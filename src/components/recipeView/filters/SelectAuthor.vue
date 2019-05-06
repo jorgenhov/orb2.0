@@ -38,7 +38,7 @@ export default {
       api.getAllUsers()
         .then(authors => {
           authors.map(authorObj => {
-            let author = authorObj.user;
+            let author = authorObj.author;
             this.optionsAuthor.push(author)
           })
         })

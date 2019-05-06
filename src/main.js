@@ -11,6 +11,22 @@ import VeeValidate from 'vee-validate'
 Vue.use(VeeValidate)
 
 axios.defaults.baseURL = 'http://localhost:3100/api'
+axios.interceptors.request.use(
+  (config) => {
+    let token = "nope";
+    //let token = localStorage.getItem('authtoken');
+
+    if (token) {
+      config.headers['Authorization'] = `Bearer ${ token }`;
+    }
+
+    return config;
+  },
+
+  (error) => {
+    return Promise.reject(error);
+  }
+);
 
 Vue.config.productionTip = false
 

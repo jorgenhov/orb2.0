@@ -1,6 +1,6 @@
 <template lang="html">
   <v-container class="orb-container" fluid>
-    <v-layout row wrap>
+    <v-layout v-if="" row wrap>
       <v-flex xs3 xl2>
         <orb-selected-author></orb-selected-author>
         <orb-selected-category></orb-selected-category>
@@ -18,6 +18,11 @@ import SelectCategory from '../recipeView/filters/SelectCategory.vue'
 import SelectAuthor from '../recipeView/filters/SelectAuthor.vue'
 import{ mapActions } from 'vuex';
 export default {
+  data() {
+    return {
+      isSignedIn: false
+    };
+  },
   components: {
     orbRecipesView: RecipesView,
     orbSelectedCategory: SelectCategory,
@@ -26,10 +31,16 @@ export default {
   methods: {
     ...mapActions([
       'getRecipesLength'
-    ])
+    ]),
+    // checkIfLoggedIn() {
+    //   if (localStorage.getItem('authtoken') !== '') {
+    //
+    //   }
+    // }
   },
   created: function() {
     this.getRecipesLength();
+    //this.checkIfLoggedIn();
   }
 }
 </script>
