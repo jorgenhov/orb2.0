@@ -208,7 +208,7 @@ export default {
       submit() {
         this.$validator.validateAll()
           .then(result => {
-            if (this.instructionsInputs.length > 0 && this.ingredientInputs.length > 0 && !this.$validator.errors.all()){
+            if (this.instructionsInputs.length > 0 && this.ingredientInputs.length > 0 && this.$validator.errors.all().length === 0){
               let data = this.getFormData();
               api.createRecipe(data)
                 .then(response => {
@@ -216,7 +216,7 @@ export default {
                   window.location.reload();
                 })
             } else {
-              console.log(false);
+              console.log('Noe gikk galt, prøv igjen');
             }
           })
       },
